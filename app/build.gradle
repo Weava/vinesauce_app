@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "com.weava.vinesauce"
+        minSdkVersion 16
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //App compat support library containing several material design constructs
+    compile "com.android.support:appcompat-v7:21.0.+"
+
+    //Library containing CardViews and related
+    compile 'com.github.gabrielemariotti.cards:cardslib-core:2.0.1'
+
+    //A simple image loading and caching library
+    compile 'com.squareup.picasso:picasso:2.4.0'
+
+    //Library adds color and transparency options to system and status bar
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+
+    //Library to inject views rather than using findViewById()
+    compile 'com.jakewharton:butterknife:6.1.0'
+
+    //Library for Circle Image Views
+    compile 'de.hdodenhof:circleimageview:1.2.1'
+
+    //Google Play Services
+    compile 'com.google.android.gms:play-services:6.5.87'
+}
