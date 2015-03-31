@@ -1,33 +1,48 @@
 package com.weava.vinesauce;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
+
+import com.weava.vinesauce.drawer.DrawerActivity;
+import com.weava.vinesauce.fragments.HomeFragment;
+
+import butterknife.ButterKnife;
 
 
-public class HomeActivity extends ActionBarActivity
+public class HomeActivity extends DrawerActivity
 {
+    private Toolbar mToolbar;
+    private String mTitle = "Home";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    protected Toolbar init()
     {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        if (savedInstanceState == null)
-        {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
-    }
+        ButterKnife.inject(this);
 
+        //init achievements
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        HomeFragment homeFragment = new HomeFragment();
+        fragmentTransaction.add(R.id.home_fragment_container, homeFragment);
+        fragmentTransaction.commit();
+
+        //Toolbar settings
+        //mToolbar.showOverflowMenu();
+        mToolbar.setTitle(mTitle);
+        setSupportActionBar(mToolbar);
+
+        /*
+            Testing sugar for achievements
+         */
+        Log.d("NAV_DRAWER", "Activating nav drawer activity");
+        return mToolbar;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -52,24 +67,5 @@ public class HomeActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment
-    {
-
-        public PlaceholderFragment()
-        {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState)
-        {
-            View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-            return rootView;
-        }
     }
 }
