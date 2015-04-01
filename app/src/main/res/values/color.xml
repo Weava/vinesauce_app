@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="toolbar_color" type="color">#34B864</item>
-    <item name="status_bar_color" type="color">#388E3C</item>
+    <color name="toolbar_color">#1B5E20</color>
+    <color name="status_bar_color">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="nav_drawer_text">#AAAAAA</color>
+    <color name="black_background">#111111</color>
+    <color name="black">#000000</color>
 </resources>

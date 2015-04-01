@@ -10,6 +10,11 @@ public class DrawerItem
     private String mTitle;
     private int mIcon;
 
+    public DrawerItem()
+    {
+
+    }
+
     public DrawerItem(String title, int draw)
     {
         this.mTitle = title;
